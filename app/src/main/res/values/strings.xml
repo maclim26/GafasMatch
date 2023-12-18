@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GafasMatch</string>
+    <string name="welcome">Bienvenido, encuentra tus gafas perfectas!</string>
+    <string name="username_hint">Usuario</string>
+    <string name="about_button">Acerca de</string>
+    <string name="contact">Contactar</string>
+    <string name="description">GafasMatch es tu compañero perfecto para encontrar las gafas ideales.
+        Explora una amplia variedad de estilos y modelos de gafas de diferentes ópticas. Comparte
+        tu estilo, descubre las últimas tendencias y ayuda a otros usuarios a encontrar sus gafas
+        perfectas subiendo fotos con tus gafas favoritas. ¡Encuentra el look perfecto para cada
+        ocasión con GafasMatch!</string>
+</resources>
