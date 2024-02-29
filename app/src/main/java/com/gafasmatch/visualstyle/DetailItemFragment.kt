@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import com.gafasmatch.visualstyle.data.Gafa
 import com.gafasmatch.visualstyle.databinding.FragmentDetailItemBinding
 
 class DetailItemFragment : Fragment() {
@@ -12,6 +14,7 @@ class DetailItemFragment : Fragment() {
 
     private var _binding: FragmentDetailItemBinding? = null
     private val binding get() = _binding!!
+    // Definir una variable para almacenar los argumentos recibidos
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +27,8 @@ class DetailItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // obtener los datos pasados al Fragmento y mostrarlos en la interfaz de usuario
+        // Obtener los argumentos pasados al Fragmento y asignarlos a la variable
+
     }
 
     override fun onDestroyView() {

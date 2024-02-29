@@ -32,6 +32,27 @@ class MenuFragment : Fragment() {
         binding.btnSalir.setOnClickListener {
             navigateToLoginFragment()
         }
+        // Configurar el BottomNavigationView
+        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_discover -> {
+                    // Navegar al fragmento ItemListFragment
+                    findNavController().navigate(R.id.action_menuFragment_to_itenListFragment)
+                    true
+                }
+                R.id.menu_favorites -> {
+                    // Navegar al fragmento FavItemListFragment
+                    findNavController().navigate(R.id.action_menuFragment_to_favItemListFragment)
+                    true
+                }
+                R.id.menu_personal -> {
+                    // Navegar al fragmento UserInfoFragment
+                    findNavController().navigate(R.id.action_menuFragment_to_userInfoFragment)
+                    true
+                }
+                else -> false
+            }
+        }
         return binding.root
     }
     private fun navigateToCreditsFragment() {

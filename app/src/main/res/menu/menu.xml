@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/menu_discover"
+        android:title="Descubrir"
+        android:icon="@drawable/ic_discover" />
+    <item
+        android:id="@+id/menu_favorites"
+        android:title="Favoritos"
+        android:icon="@drawable/ic_favorite" />
+    <item
+        android:id="@+id/menu_personal"
+        android:title="Personal"
+        android:icon="@drawable/ic_personal" />
 </menu>

@@ -23,11 +23,13 @@
 
     <TextView
         android:id="@+id/textViewDescription"
+        style="@style/Base.Theme.GafasMatch.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewVersion"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="@string/description"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -36,8 +38,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133"
-        style="@style/Base.Theme.GafasMatch.Text"/>
+        app:layout_constraintVertical_bias="0.133" />
 
     <Button
         android:id="@+id/btnContact"

@@ -9,6 +9,7 @@
     tools:context=".LoginFragment"
     android:orientation="vertical">
 
+<!--
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -18,32 +19,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="GafasMatch"
-        app:titleTextColor="@android:color/white" />
+        app:titleTextColor="@android:color/white" />-->
     <!-- Texto de bienvenida -->
     <TextView
         android:id="@+id/textWelcome"
+        style="@style/Base.Theme.GafasMatch.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="112dp"
+
         android:text="@string/welcome"
         android:textColor="@android:color/black"
         android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.064"
-        style="@style/Base.Theme.GafasMatch.Title"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- Imagen -->
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:layout_weight="1"
         android:scaleType="centerInside"
         android:src="@drawable/imagen_principal"
+        app:layout_constraintBottom_toTopOf="@+id/editTextUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textWelcome" />
@@ -54,9 +58,10 @@
         android:id="@+id/editTextUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="32dp"
         android:hint="@string/username_hint"
         android:inputType="text"
+        android:minHeight="48dp"
         app:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -65,17 +70,18 @@
 
     <Button
         android:id="@+id/btnGoToCredit"
+        style="@style/Base.Theme.GafasMatch.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/about_button"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsuario"
-        style="@style/Base.Theme.GafasMatch.Button"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsuario" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

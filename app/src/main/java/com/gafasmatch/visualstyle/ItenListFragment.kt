@@ -11,7 +11,7 @@ import com.gafasmatch.visualstyle.data.DataSource
 import com.gafasmatch.visualstyle.data.Gafa
 import com.gafasmatch.visualstyle.databinding.FragmentItenListBinding
 
-class ItenListFragment : Fragment() ,GafasAdapter.OnFavoriteClickListener {
+class ItenListFragment : Fragment() ,GafasAdapter.OnFavoriteClickListener,GafasAdapter.OnItemClickListener {
 
     private var _binding : FragmentItenListBinding? = null
     val binding
@@ -32,9 +32,10 @@ class ItenListFragment : Fragment() ,GafasAdapter.OnFavoriteClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView(gafasList)
+
     }
     private fun initRecyclerView(gafaList: List<Gafa>) {
-        adapter = GafasAdapter(gafaList, this)
+        adapter = GafasAdapter(gafaList, this,this)
         binding.rvGafas.layoutManager = LinearLayoutManager(requireContext())
         binding.rvGafas.adapter = adapter
     }
@@ -43,8 +44,12 @@ class ItenListFragment : Fragment() ,GafasAdapter.OnFavoriteClickListener {
          selectedGafa.isFavorite = true
          adapter.notifyItemChanged(position)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(gafa: Gafa) {
     }
 }
