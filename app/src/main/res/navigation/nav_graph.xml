@@ -48,8 +48,16 @@
         android:label="fragment_iten_list"
         tools:layout="@layout/fragment_iten_list" >
         <action
+            android:id="@+id/action_itenListFragment_to_favItemListFragment"
+            app:destination="@id/favItemListFragment" />
+        <action
             android:id="@+id/action_itenListFragment_to_detailItemFragment"
-            app:destination="@id/detailItemFragment" />
+            app:destination="@id/detailItemFragment" >
+            <argument
+                android:name="selectedGafa"
+                app:argType="com.gafasmatch.visualstyle.data.Gafa" />
+        </action>
+
     </fragment>
 
     <fragment
@@ -67,6 +75,9 @@
         android:id="@+id/detailItemFragment"
         android:name="com.gafasmatch.visualstyle.DetailItemFragment"
         android:label="fragment_detail_item"
-        tools:layout="@layout/fragment_detail_item"
-        />
+        tools:layout="@layout/fragment_detail_item">
+        <argument
+            android:name="selectedGafa"
+            app:argType="com.gafasmatch.visualstyle.data.Gafa" />
+        </fragment>
 </navigation>

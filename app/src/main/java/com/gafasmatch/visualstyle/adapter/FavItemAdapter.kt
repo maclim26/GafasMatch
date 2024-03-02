@@ -2,12 +2,14 @@ package com.gafasmatch.visualstyle.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gafasmatch.visualstyle.data.FavItem
 import com.gafasmatch.visualstyle.databinding.ItemFavBinding
 
 class FavItemAdapter (
-    private val favItemList: List<FavItem>,
+    private var favItemList: List<FavItem>,
     private val onDeleteClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<FavItemAdapter.FavItemViewHolder>() {
 
@@ -15,9 +17,16 @@ class FavItemAdapter (
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(favItem: FavItem) {
-            binding.textViewTitle.text = favItem.title
-            binding.textViewDescription.text = favItem.description
-
+            binding.tvNameFav.text = favItem.title
+            binding.tvDescriptionFav.text = favItem.description
+            Glide.with(binding.ivPhotoFav.context).load(favItem.foto).into(binding.ivPhotoFav)
+            binding.ivPhotoFav.setOnClickListener{
+                Toast.makeText(
+                    binding.ivPhotoFav.context,
+                    favItem.title,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
             binding.ivDelFav.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -40,5 +49,9 @@ class FavItemAdapter (
 
     override fun getItemCount(): Int {
         return favItemList.size
+    }
+    fun submitList(newList: List<FavItem>) {
+        favItemList = newList
+        notifyDataSetChanged()
     }
 }

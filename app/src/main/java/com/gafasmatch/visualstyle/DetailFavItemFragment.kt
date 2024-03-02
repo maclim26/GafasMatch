@@ -44,8 +44,10 @@ class DetailFavItemFragment : Fragment() {
 
     private fun setupAddCommentButton() {
         binding.fabAddComment.setOnClickListener {
-            // lógica para agregar un nuevo comentario privado
-            // mostrar un cuadro de diálogo o navegar a una pantalla de agregar comentario
+            val timestamp = System.currentTimeMillis()
+            val newPrivateComment = PrivateComment(1, "Nuevo comentario", timestamp)
+            privateCommentList.add(newPrivateComment)
+            privateCommentAdapter.notifyItemInserted(privateCommentList.size - 1)
         }
     }
 

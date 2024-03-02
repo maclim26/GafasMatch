@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.gafasmatch.visualstyle.databinding.FragmentLoginBinding
@@ -32,12 +33,17 @@ class LoginFragment : Fragment() {
         binding.btnGoToCredit.setOnClickListener {
             // Obtener el nombre de usuario del EditText
             val username = binding.editTextUsuario.text.toString()
+            if(username.isNotEmpty()){
+                // Guardar el nombre de usuario en el ViewModel compartido
+                sharedViewModel.setUsername(username)
 
-            // Guardar el nombre de usuario en el ViewModel compartido
-            SharedViewModel.username = username
+                // Navegar al MenuFragment
+                findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+            }else{
+                Toast.makeText(requireContext(),"Username is empty",Toast.LENGTH_SHORT).show()
+            }
 
-            // Navegar al MenuFragment
-            findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+
 
         }
         return binding.root

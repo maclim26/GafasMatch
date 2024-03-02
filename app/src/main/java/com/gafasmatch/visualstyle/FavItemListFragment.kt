@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gafasmatch.visualstyle.adapter.FavItemAdapter
+import com.gafasmatch.visualstyle.data.DataSource
 import com.gafasmatch.visualstyle.data.FavItem
+import com.gafasmatch.visualstyle.data.Gafa
 import com.gafasmatch.visualstyle.databinding.FragmentFavItemListBinding
 
 class FavItemListFragment : Fragment() {
@@ -15,8 +19,8 @@ class FavItemListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var favItemAdapter: FavItemAdapter
-    private val favItemList: MutableList<FavItem> = mutableListOf() // Aquí debes obtener la lista de elementos favoritos del usuario
-
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val favItemList: MutableList<FavItem> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,21 +31,40 @@ class FavItemListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Inicializa el RecyclerView si aún no ha sido inicializado
+        if (!::favItemAdapter.isInitialized) {
+            initRecyclerView()
+        }
 
-        initRecyclerView()
+        val sharedViewModel: SharedViewModel by activityViewModels()
+
+        // Observa los cambios en los elementos favoritos
+        sharedViewModel.favItems.observe(viewLifecycleOwner, Observer { favItems ->
+
+            if (::favItemAdapter.isInitialized) {
+                updateFavItems(favItems)
+            }
+        })
+
     }
 
     private fun initRecyclerView() {
         favItemAdapter = FavItemAdapter(favItemList) { position ->
-            //eliminar un elemento de la lista de favoritos
-            val deletedItem = favItemList.removeAt(position)
+            // Eliminar un elemento de la lista de favoritos
+            val deletedItem = favItemList[position]
+            favItemList.removeAt(position)
             favItemAdapter.notifyItemRemoved(position)
+            // Notificar al ViewModel sobre la eliminación del elemento
+            sharedViewModel.removeFavItem(deletedItem)
         }
 
-        binding.rvGafasFav.apply {
-            adapter = favItemAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+        binding.rvGafasFav.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvGafasFav.adapter = favItemAdapter
+    }
+    fun updateFavItems(favItems: List<FavItem>) {
+        favItemList.clear()
+        favItemList.addAll(favItems)
+        favItemAdapter.notifyDataSetChanged()
     }
 
     override fun onDestroyView() {

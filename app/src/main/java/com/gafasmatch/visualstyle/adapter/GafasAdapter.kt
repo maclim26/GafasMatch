@@ -25,6 +25,10 @@ class GafasAdapter(private val gafasList: List<Gafa>,
     ) {
         val gafa = gafasList[position]
         holder.bind(gafa)
+        // Manejar el clic en el ícono de favorito
+        holder.binding.ivFavorite.setOnClickListener {
+            favoriteClickListener.onFavoriteClicked(position)
+        }
         holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(gafa)
         }

@@ -11,7 +11,7 @@ import com.gafasmatch.visualstyle.data.Gafa
 import com.gafasmatch.visualstyle.databinding.GafaItemBinding
 
 class GafaViewHolder(view: View): RecyclerView.ViewHolder(view) {
-    private val binding = GafaItemBinding.bind(view)
+    val binding = GafaItemBinding.bind(view)
 
     fun bind(gafaModel: Gafa){
         binding.tvName.text = gafaModel.nombre

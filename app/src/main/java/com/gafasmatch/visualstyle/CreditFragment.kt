@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.gafasmatch.visualstyle.databinding.FragmentCreditBinding
 
 
 class CreditFragment : Fragment() {
     private var _binding: FragmentCreditBinding? = null
     private val binding get() = _binding!!
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,12 +29,10 @@ class CreditFragment : Fragment() {
     ): View? {
         _binding = FragmentCreditBinding.inflate(inflater, container, false)
 
-        // Obtener el nombre de usuario del ViewModel compartido
-        val username = SharedViewModel.username
-
-        // Configurar el texto en TextViews
-        binding.textViewVersion.text= "$username, estás usando la versión 1 de..."
-
+        sharedViewModel.username.observe(viewLifecycleOwner) { username ->
+            // Configurar el texto
+            binding.textViewVersion.text = "$username, estás usando la versión 1 de..."
+        }
         // Configurar el botón de contacto
         binding.btnContact.setOnClickListener {
             enviarCorreoConsulta()

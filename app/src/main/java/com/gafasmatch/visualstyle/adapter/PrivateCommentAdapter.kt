@@ -27,7 +27,7 @@ class PrivateCommentAdapter(private val privateCommentList: List<PrivateComment>
 
         fun bind(privateComment: PrivateComment) {
             binding.textViewComment.text = privateComment.comment
-            //establecer cualquier otra información que desees mostrar en el comentario privado
+
         }
     }
 }
